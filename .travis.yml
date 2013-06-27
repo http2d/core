@@ -1,3 +1,4 @@
 language: cpp
+install: libboost-all-dev libevent-dev
 script: cmake ./ && cmake --build .
 
