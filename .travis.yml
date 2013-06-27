@@ -1,4 +1,4 @@
 language: cpp
-install: sudo apt-get install -y libboost-all-dev libevent-dev
+install: sudo apt-get install -y libboost-all-dev libevent-dev zlib1g-dev libgtest-dev
 script: cmake ./ && cmake --build .
 
