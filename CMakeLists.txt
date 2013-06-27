@@ -16,6 +16,7 @@ set_cxx_norm(CXX_NORM_CXX11)
 enable_testing()
 
 # Libraries
+FIND_PACKAGE( Threads REQUIRED )
 FIND_PACKAGE( Boost 1.40 COMPONENTS program_options REQUIRED )
 FIND_PACKAGE( ZLIB REQUIRED )
 
