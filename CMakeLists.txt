@@ -2,7 +2,7 @@
 
 # Project
 set(PROJECT_NAME_STR h2)
-project(${PROJECT_NAME_STR})
+project(${PROJECT_NAME_STR} C CXX)
 
 # CMake version check
 cmake_minimum_required(VERSION 2.8)
