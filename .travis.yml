@@ -7,7 +7,7 @@ install: |
   curl -O https://googletest.googlecode.com/files/gtest-1.6.0.zip
   unzip gtest-1.6.0.zip
   cd gtest-1.6.0
-  ./configure --prefix=/usr && make -j && sudo make install
+  ./configure --prefix=/usr && make -j && sudo cp -a include/gtest /usr/include && sudo cp -a lib/.libs/* /usr/lib/ && sudo ldconfig
   cd ..
 
 script: cmake ./ && cmake --build .
