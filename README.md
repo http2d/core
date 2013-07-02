@@ -7,7 +7,7 @@ Developer Resources
 -------------------
 
 - [Bugs Reports](https://github.com/http2d/core/issues)
-- [Continious Integration](https://travis-ci.org/http2d/core/builds) System
+- [Continious Integration](https://travis-ci.org/http2d/core/builds) System: [![Build Status](https://travis-ci.org/http2d/core.png?branch=master)](https://travis-ci.org/http2d/core)
 
 
 Best,  
