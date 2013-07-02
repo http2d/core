@@ -6,7 +6,7 @@
  */
 
 #include "gtest/gtest.h"
-#include <boost/locale.hpp>
+#include "boost/locale.hpp"
 
 namespace loc = boost::locale;
 
