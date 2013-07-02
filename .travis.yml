@@ -1,7 +1,10 @@
 language: cpp
 install: |
   # Dependencies packages
-  sudo apt-get install -y libboost-all-dev libboost-dev libboost-dbg libboost1.48-dev libevent-dev libevent-dbg zlib1g-dev zlib1g-dbg
+  sudo apt-get install -y \
+     libboost-all-dev libboost-dev libboost-dbg \
+     libevent-dev libevent-dbg \
+     zlib1g-dev zlib1g-dbg
 
   # Google Test
   curl -O https://googletest.googlecode.com/files/gtest-1.6.0.zip
