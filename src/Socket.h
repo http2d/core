@@ -28,17 +28,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef CONNECTION_H_
-#define CONNECTION_H_
+#ifndef SOCKET_H_
+#define SOCKET_H_
 
-namespace h2 {
+namespace http2d {
 
-	class Connection
+	class Socket
 	{
 		public:
-			Connection();
-			virtual ~Connection();
+			Socket();
+			virtual ~Socket();
 	};
 
-} /* namespace h2 */
-#endif /* CONNECTION_H_ */
+} /* namespace http2d */
+#endif /* SOCKET_H_ */

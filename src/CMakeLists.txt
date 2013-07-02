@@ -1,4 +1,4 @@
-set( SRC_SERVER Connection.cpp )
+set( SRC_SERVER Socket.cpp Connection.cpp )
 
 add_library(
     server

@@ -28,17 +28,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef CONNECTION_H_
-#define CONNECTION_H_
+#include "Socket.h"
 
-namespace h2 {
+namespace http2d {
 
-	class Connection
-	{
-		public:
-			Connection();
-			virtual ~Connection();
-	};
+	Socket::Socket() {
+		// TODO Auto-generated constructor stub
 
-} /* namespace h2 */
-#endif /* CONNECTION_H_ */
+	}
+
+	Socket::~Socket() {
+		// TODO Auto-generated destructor stub
+	}
+
+} /* namespace http2d */
