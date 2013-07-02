@@ -31,7 +31,7 @@
 #ifndef CONNECTION_H_
 #define CONNECTION_H_
 
-namespace h2 {
+namespace http2d {
 
 	class Connection
 	{
@@ -40,5 +40,5 @@ namespace h2 {
 			virtual ~Connection();
 	};
 
-} /* namespace h2 */
+} /* namespace http2d */
 #endif /* CONNECTION_H_ */

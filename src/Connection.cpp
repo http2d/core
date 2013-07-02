@@ -30,7 +30,7 @@
 
 #include "Connection.h"
 
-namespace h2 {
+namespace http2d {
 
 	Connection::Connection() {
 		// TODO Auto-generated constructor stub
@@ -41,4 +41,4 @@ namespace h2 {
 		// TODO Auto-generated destructor stub
 	}
 
-} /* namespace h2 */
+} /* namespace http2d */
