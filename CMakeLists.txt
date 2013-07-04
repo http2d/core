@@ -1,7 +1,7 @@
 ## cmake -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D_ECLIPSE_VERSION=4.2 -DCMAKE_CXX_COMPILER=g++-mp-4.8 ../h2
 
 # Project
-set(PROJECT_NAME_STR h2)
+set(PROJECT_NAME_STR http2d)
 project(${PROJECT_NAME_STR} C CXX)
 
 # CMake version check
