@@ -31,10 +31,47 @@
 #ifndef SOCKET_H_
 #define SOCKET_H_
 
+#include "config.h"
+
+#ifdef HAVE_SYS_TIME_H
+# include <sys/time.h>
+#else
+#include <time.h>
+#endif
+
+#include <sys/types.h>
+#include <netdb.h>
+
+#ifdef HAVE_SYS_SOCKET_H
+# include <sys/socket.h>
+# include <sys/un.h>
+#endif
+
+#ifdef HAVE_NETINET_IN_H
+# include <netinet/in.h>
+#endif
+
+#ifdef HAVE_ARPA_INET_H
+# include <arpa/inet.h>
+#endif
+
+
 namespace http2d {
+
+	typedef struct {
+			union {
+					struct in_addr  addr_ipv4;
+					struct in6_addr addr_ipv6;
+			}              addr;
+			unsigned short family;
+	} cherokee_in_addr_t;
+
 
 	class Socket
 	{
+		private:
+			int fd;
+
 		public:
 			Socket();
 			virtual ~Socket();

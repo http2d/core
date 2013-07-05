@@ -29,16 +29,18 @@
  */
 
 #include "Socket.h"
+#include <unistd.h>
 
 namespace http2d {
 
 	Socket::Socket() {
-		// TODO Auto-generated constructor stub
-
+		fd = -1;
 	}
 
 	Socket::~Socket() {
-		// TODO Auto-generated destructor stub
+		if (fd != -1) {
+			close (fd);
+		}
 	}
 
 } /* namespace http2d */
