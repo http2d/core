@@ -7,10 +7,21 @@ project(${PROJECT_NAME_STR} C CXX)
 # CMake version check
 cmake_minimum_required(VERSION 2.8)
 
-# C++ version check
+# Includes
+include(CheckTypeSize)
+include(CheckIncludeFiles)
+include(CheckFunctionExists)
 include("cmake/set_cxx_norm.cmake")
 include("cmake/FindLibEvent.cmake")
+
+# C++ version check
 set_cxx_norm(CXX_NORM_CXX11)
+
+# Headers
+CHECK_INCLUDE_FILES (sys/time.h HAVE_SYS_TIME_H)
+CHECK_INCLUDE_FILES (sys/socket.h HAVE_SYS_SOCKET_H)
+CHECK_INCLUDE_FILES (netinet/in.h HAVE_NET_INIT_IN_H)
+CHECK_INCLUDE_FILES (arpa/inet.h HAVE_ARPA_INET_H)
 
 # Testing
 enable_testing()
@@ -24,5 +35,7 @@ FIND_PACKAGE( ZLIB REQUIRED )
 add_subdirectory(test)
 add_subdirectory(src)
 
-# Distribution
-include (CPack)
+# config.h
+execute_process (COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/config.h.in.pre-update.py ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+CONFIGURE_FILE (${CMAKE_CURRENT_BINARY_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h IMMEDIATE)
+
