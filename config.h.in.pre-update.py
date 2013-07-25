@@ -19,12 +19,21 @@ includes_t = ''
 for h in re.findall (r'CHECK_INCLUDE_FILES *\(.+? *(\w+)\)', cont, re.IGNORECASE):
     includes_t += '#cmakedefine %s\n' %(h)
 
+sizes_t = ''
+for h in re.findall (r'CHECK_TYPE_SIZE *\(.+? *(\w+)\)', cont, re.IGNORECASE):
+    sizes_t += '/* %s */\n' %(h.replace('SIZEOF_','').replace('_',' '))
+    sizes_t += '#cmakedefine HAVE_%s\n' %(h)
+    sizes_t += '@%s_CODE@\n' %(h)
+    sizes_t += '#ifdef HAVE_%s\n' %(h)
+    sizes_t += '# define HAVE_%s\n' %(h.replace('SIZEOF_',''))
+    sizes_t += '#endif\n\n'
 
 # Read .pre file
 with open(FILENAME_PRE, 'r') as f:
     cont = f.read()
 
 cont = cont.replace ("${{includes}}", includes_t)
+cont = cont.replace ("${{sizes}}", sizes_t)
 
 with open(FILENAME_NEW, 'w+') as f:
     f.write (cont)

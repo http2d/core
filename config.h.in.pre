@@ -34,4 +34,7 @@
 // Detected headers
 ${{includes}}
 
+// Sizes
+${{sizes}}
+
 #endif /* CONFIG_H_ */

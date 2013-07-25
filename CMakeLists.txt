@@ -1,4 +1,4 @@
-## cmake -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D_ECLIPSE_VERSION=4.2 -DCMAKE_CXX_COMPILER=g++-mp-4.8 ../h2
+## cmake -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D_ECLIPSE_VERSION=4.2 -DCMAKE_CXX_COMPILER=g++-mp-4.9 ../h2
 
 # Project
 set(PROJECT_NAME_STR http2d)
@@ -23,6 +23,12 @@ CHECK_INCLUDE_FILES (sys/socket.h HAVE_SYS_SOCKET_H)
 CHECK_INCLUDE_FILES (netinet/in.h HAVE_NET_INIT_IN_H)
 CHECK_INCLUDE_FILES (arpa/inet.h HAVE_ARPA_INET_H)
 
+# Structs
+SET(CMAKE_EXTRA_INCLUDE_FILES netinet/in.h)
+CHECK_TYPE_SIZE ("struct in6_addr" SIZEOF_STRUCT_IN6_ADDR)
+CHECK_TYPE_SIZE ("long long" SIZEOF_LONG_LONG)
+SET(CMAKE_EXTRA_INCLUDE_FILES)
+
 # Testing
 enable_testing()
 
@@ -39,3 +45,17 @@ add_subdirectory(src)
 execute_process (COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/config.h.in.pre-update.py ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 CONFIGURE_FILE (${CMAKE_CURRENT_BINARY_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h IMMEDIATE)
 
+# Source distribution
+INCLUDE(CPack)
+
+# Final license reminder
+MESSAGE ("
++------------------------------------------------------------------+
+| License:                                                         |
+| This software is subject to the BSD License, available in this   |
+| distribution in the file LICENSE. Please, remember that any copy |
+| distribution or modification of the software is subject to it.   |
++------------------------------------------------------------------+
+
+Thank you for using ${PROJECT_NAME_STR}.
+")
