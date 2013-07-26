@@ -13,5 +13,5 @@ install: |
   ./configure --prefix=/usr && make -j && sudo cp -a include/gtest /usr/include && sudo cp -a lib/.libs/* /usr/lib/ && sudo ldconfig
   cd ..
 
-script: cmake ./ && cmake --build . && make test
+script: find / -name "locale.hpp" 2>/dev/null ; cmake ./ && cmake --build . && make test
 
