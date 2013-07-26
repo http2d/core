@@ -1,8 +1,10 @@
 language: cpp
 install: |
+  sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ precise main universe"
+
   # Dependencies packages
   sudo apt-get install -y \
-     libboost-all-dev libboost-dev libboost-dbg libboost1.46-dev \
+     libboost-all-dev libboost-dev libboost-dbg libboost1.48-dev \
      libevent-dev libevent-dbg \
      zlib1g-dev zlib1g-dbg
 
