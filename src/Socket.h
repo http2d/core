@@ -64,7 +64,21 @@ namespace http2d {
 					struct in6_addr addr_ipv6;
 			}              addr;
 			unsigned short family;
-	} cherokee_in_addr_t;
+	} in_addr_t;
+
+	/* Socket address
+	 */
+	typedef union {
+			struct sockaddr         sa;
+			struct sockaddr_in      sa_in;
+
+#ifdef HAVE_SOCKADDR_UN
+			struct sockaddr_un      sa_un;
+#endif
+#ifdef HAVE_SIZEOF_SOCKADDR_IN6
+			struct sockaddr_in6     sa_in6;
+#endif
+	} cherokee_sockaddr_t;
 
 
 	class Socket

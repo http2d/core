@@ -22,8 +22,8 @@ for h in re.findall (r'CHECK_INCLUDE_FILES *\(.+? *(\w+)\)', cont, re.IGNORECASE
 sizes_t = ''
 for h in re.findall (r'CHECK_TYPE_SIZE *\(.+? *(\w+)\)', cont, re.IGNORECASE):
     sizes_t += '/* %s */\n' %(h.replace('SIZEOF_','').replace('_',' '))
-    sizes_t += '#cmakedefine HAVE_%s\n' %(h)
     sizes_t += '@%s_CODE@\n' %(h)
+    sizes_t += '#cmakedefine HAVE_%s\n' %(h)
     sizes_t += '#ifdef HAVE_%s\n' %(h)
     sizes_t += '# define HAVE_%s\n' %(h.replace('SIZEOF_',''))
     sizes_t += '#endif\n\n'
