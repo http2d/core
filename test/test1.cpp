@@ -5,8 +5,8 @@
  *      Author: alo
  */
 
-#include "gtest/gtest.h"
-#include "boost/locale.hpp"
+#include <gtest/gtest.h>
+#include <boost/locale.hpp>
 
 namespace loc = boost::locale;
 
