@@ -28,36 +28,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <string>
-#include <iostream>
-// #include <boost/program_options.hpp>
+#include "Server.h"
 
-#include <boost/program_options/options_description.hpp>
-#include <boost/program_options/variables_map.hpp>
-#include <boost/program_options.hpp>
+namespace http2d {
 
-namespace opts = boost::program_options;
+	Server::Server() {
+		evbase = event_base_new();
+		// TODO Auto-generated constructor stub
 
-
-int
-main (int argc, char *argv[])
-{
-
-	// Declare the supported options.
-	opts::options_description desc("Allowed options");
-	desc.add_options()
-	    ("help", "produce help message")
-	    ("compression", opts::value<int>(), "set compression level")
-	;
-
-	opts::variables_map vm;
-	opts::store(opts::parse_command_line(argc, argv, desc), vm);
-	opts::notify(vm);
-
-	if (vm.count("help")) {
-	    std::cout << desc << "\n";
-	    return 1;
 	}
 
-	return 0;
-}
+	Server::~Server() {
+		// TODO Auto-generated destructor stub
+	}
+
+} /* namespace http2d */
