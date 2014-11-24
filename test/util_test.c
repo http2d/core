@@ -618,7 +618,7 @@ START_TEST (_gethostbyname)
     ret = chula_gethostbyname (&host, &addr);
     ch_assert (ret == ret_error);
 
-    chula_buffer_add_str (&host, "example.com");
+    chula_buffer_add_str (&host, "localhost");
     ret = chula_gethostbyname (&host, &addr);
     ch_assert (ret == ret_ok);
     ch_assert (addr != NULL);
