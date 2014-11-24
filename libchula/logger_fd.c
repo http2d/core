@@ -109,8 +109,8 @@ chula_log_fd_new (chula_log_fd_t **logger, int fd)
     CHULA_NEW_STRUCT (n, log_fd);
 
     n->fd              = fd;
-    HPACK_LOG(n)->log  = _fd_log;
-    HPACK_LOG(n)->free = _fd_free;
+    CHULA_LOG(n)->log  = _fd_log;
+    CHULA_LOG(n)->free = _fd_free;
 
     *logger = n;
     return ret_ok;

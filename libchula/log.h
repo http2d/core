@@ -52,7 +52,7 @@ typedef struct {
     void  (*free) (void *self);
 } chula_log_base_t;
 
-#define HPACK_LOG(l) ((chula_log_base_t*)(l))
+#define CHULA_LOG(l) ((chula_log_base_t*)(l))
 
 /* Init & Shutdown */
 ret_t chula_log_init     (chula_log_base_t *log);

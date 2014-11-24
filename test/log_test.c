@@ -74,7 +74,7 @@ START_TEST (logger_fd)
     ret = chula_log_fd_new (&logger, fd);
     ch_assert (ret == ret_ok);
 
-    ret = chula_log_init (HPACK_LOG(logger));
+    ret = chula_log_init (CHULA_LOG(logger));
     ch_assert (ret == ret_ok);
 
     /* Testing */
