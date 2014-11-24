@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# All files in libhpack are Copyright (C) 2014 Alvaro Lopez Ortega.
+# All files in libchula are Copyright (C) 2014 Alvaro Lopez Ortega.
 #
 #   Authors:
 #    # Alvaro Lopez Ortega <alvaro@gnu.org>
@@ -39,10 +39,8 @@ from_here = lambda x: os.path.normpath (os.path.dirname (os.path.realpath(__file
 
 PATH_CHULA      = from_here('/../libchula')
 PATH_CHULA_QA   = from_here('/../libchula-qa')
-PATH_HPACK      = from_here('/../libhpack')
-PATH_CHULA_TEST = from_here('/../libchula/test')
-PATH_HPACK_TEST = from_here('/../test')
-PATH_HPACK_CI   = from_here('')
+PATH_CHULA_TEST = from_here('/../test')
+PATH_CHULA_CI   = from_here('')
 
 
 def _find_files (paths, match_filters, match_postskip = None):
@@ -75,7 +73,7 @@ def check_ifdef_HAVE():
 			return []
 
 	errors = []
-	for h_path in _find_files ([PATH_CHULA, PATH_HPACK], ['*.h'], '-internal'):
+	for h_path in _find_files ([PATH_CHULA], ['*.h'], '-internal'):
 		errors += _check_header(h_path)
 
 	return errors
@@ -118,7 +116,7 @@ def check_local_includes():
 			return []
 
 	errors = []
-	for h_path in _find_files ([PATH_CHULA, PATH_HPACK], ['*.h']):
+	for h_path in _find_files ([PATH_CHULA], ['*.h']):
 		errors += _check_header(h_path)
 
 	return errors
@@ -147,7 +145,7 @@ def check_cstrings_funcs():
 			return []
 
 	errors = []
-	for c_path in _find_files ([PATH_CHULA, PATH_HPACK], ['*.c'], 'libchula/cstrings.c'):
+	for c_path in _find_files ([PATH_CHULA], ['*.c'], 'libchula/cstrings.c'):
 		errors += _check_header(c_path)
 
 	return errors
@@ -160,9 +158,9 @@ def code_vs_tests():
 	code_size = 0
 	test_size = 0
 
-	for c_path in _find_files ([PATH_CHULA, PATH_HPACK], ['*.c','*.h','*.py']):
+	for c_path in _find_files ([PATH_CHULA], ['*.c','*.h','*.py']):
 		code_size += os.path.getsize (c_path)
-	for c_path in _find_files ([PATH_CHULA_TEST, PATH_HPACK_TEST, PATH_HPACK_CI, PATH_CHULA_QA], ['*.c','*.h','*.py']):
+	for c_path in _find_files ([PATH_CHULA_TEST, PATH_CHULA_CI, PATH_CHULA_QA], ['*.c','*.h','*.py']):
 		test_size += os.path.getsize (c_path)
 
 	percent = (test_size*100)/float(code_size)
