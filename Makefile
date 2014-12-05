@@ -26,3 +26,6 @@ endif
 
 test: all
 	cd build ; ../tools/highlight-ctest.py '$(MAKE) test ARGS="-V"' ; cd ..
+
+install:
+	$(MAKE) -C build install
