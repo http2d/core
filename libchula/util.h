@@ -72,6 +72,7 @@ char   *chula_min_str        (char *s1, char *s2);
 char   *chula_max_str        (char *s1, char *s2);
 ret_t   chula_atoi           (const char *str, int *ret_value);
 ret_t   chula_atol           (const char *str, long *ret_value);
+ret_t   chula_ahextol        (const char *str, long *ret_value);
 ret_t   chula_atob           (const char *str, bool *ret_value);
 int     chula_string_is_ipv6 (chula_buffer_t *ip);
 ret_t   chula_malloc_size    (const void *ptr, size_t *size);
