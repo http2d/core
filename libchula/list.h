@@ -50,12 +50,16 @@ typedef struct list_entry chula_list_entry_t;
 
 #define LIST(l) ((chula_list_t *)(l))
 
-#define INIT_LIST_HEAD(ptr) do {                \
+#define chula_list_init(ptr)                    \
+    do {                                        \
 		(ptr)->next = (ptr);                    \
 		(ptr)->prev = (ptr);                    \
-	} while (0)
+	} while(false)
 
-#define LIST_HEAD_INIT(ptr) { &(ptr), &(ptr) }
+#define CHULA_LIST_INIT(ptr) { &(ptr), &(ptr) }
+
+#define INIT_LIST_HEAD(ptr) chula_list_init(ptr)  /* Deprecated */
+#define LIST_HEAD_INIT(ptr) CHULA_LIST_INIT(ptr)  /* Deprecated */
 
 #define list_entry(ptr, type, member)                               \
 	((type *)((char *)(ptr)-(unsigned long)(&((type *)0)->member)))
