@@ -193,3 +193,17 @@ chula_strlcat (char *dst, const char *src, size_t siz)
     return strlcat (dst, src, siz);
 #endif
 }
+
+
+char *
+chula_strchrnul (const char *s, int c_in)
+{
+#ifndef HAVE_STRCHRNUL
+    char c = c_in;
+    while (*s && (*s != c))
+        s++;
+    return (char *) s;
+#else
+    return strchrnul(s,c_in);
+#endif
+}

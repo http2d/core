@@ -45,6 +45,7 @@ char   *chula_strnstr      (const char *s, const char *find, size_t slen);
 char   *chula_strcasestr   (const char *s, const char *find);
 char   *chula_strncasestr  (const char *s, const char *find, size_t slen);
 char   *chula_strncasestrn (const char *s, size_t slen, const char *find, size_t findlen);
+char   *chula_strchrnul    (const char *s, int c);
 
 /* Macros */
 #define chula_strncasestrn_s(s,s_len,lit) chula_strncasestrn(s, s_len, lit, sizeof(lit)-1)
