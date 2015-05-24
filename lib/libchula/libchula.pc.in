@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/libchula
+
+Name: libchula
+Description: Utility and abstraction library for C-based programs
+Version: @chula_VERSION@
+Libs: -L${libdir} -lchula
+Libs.private: @LIBS@
+Cflags: -I${includedir}
+Requires: libchula
