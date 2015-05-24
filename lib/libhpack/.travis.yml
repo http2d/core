@@ -1,0 +1,57 @@
+language: c
+
+matrix:
+  include:
+    - compiler: gcc
+      env: DO=cmake DEV=yes MAKE_OPTION=-j
+    - compiler: clang
+      env: DO=cmake DEV=yes CMAKE_OPTION="-DUSE_VALGRIND=no" CFLAGS=-fsanitize=address
+    - compiler: gcc
+      env: DO=cmake DEV=yes CMAKE_OPTION="-DUSE_VALGRIND=no -DENABLE_GCOV=yes" COVERALLS=yes
+    - compiler: gcc
+      env: DO=cmake DEV=yes CMAKE_OPTION="-DUSE_VALGRIND=yes -DENABLE_GCOV=no"
+    - env: DO=lib-usage DEV=yes
+    - env: DO=tarball-dist DEV=yes
+    - env: DO=src-check
+    - env: DO=arm
+  allow_failures:
+    - env: DO=arm
+
+cache: apt
+
+# Run the Build script
+script:
+ - if [ x$DEV == xyes ]; then ./CI/install/ubuntu.sh; fi
+ - if [ x$DO == xcmake ]; then        ./CI/build.sh; fi
+ - if [ x$DO == xtarball-dist ]; then ./CI/tarball.sh; fi
+ - if [ x$DO == xlib-usage ]; then    ./CI/lib-usage.sh; fi
+ - if [ x$DO == xsrc-check ]; then    ./CI/src-check.py; fi
+ - if [ x$DO == xarm ]; then          ./CI/debian-arm.sh; fi
+
+after_success: |
+  if [ x$COVERALLS == xyes ]; then \
+    coveralls --exclude build/CMakeFiles --exclude doc --exclude cmake --exclude test --exclude CI --exclude libchula-qa --exclude libchula/test --exclude-pattern 'CMake[^\.]*\.c(?:pp)?' --exclude-pattern '[^\.]*\.h' || true ;\
+  fi
+
+# Notify developers when build passed/failed.
+notifications:
+  irc:
+    template:
+      - "%{repository}#%{build_number} %{commit} %{author}: %{message} %{build_url}"
+    channels:
+      - "irc.freenode.net#cherokee"
+
+env:
+  global:
+   # The next declration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "U2yh4fEOGida96QloMlZZprLcH5gZHO8v9QJZdzZYCwCd6Fb9RppISiJqC7RrIldaYQkomauHMtlhfLRu88u9d5zZ5S13bgtJDb7NmaXT+xxbny3rcLFsDIxLSBM4w/ZiNaeOPE/nUnVTbuJH3DeLDrLaMV10vLbAfQQuQJ+Yv8="
+
+addons:
+  coverity_scan:
+    project:
+      name: "alobbs/libhpack"
+      description: "Header Compression for HTTP/2.0 library"
+    notification_email: alvaro@alobbs.com
+    build_command: "make debug"
+    branch_pattern: coverity
